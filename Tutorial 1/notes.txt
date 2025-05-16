@@ -1,4 +1,97 @@
-Extensions: Expo Tools, React Native Tools
+Extensions: Expo Tools, React Native Tools, ES7+ React/Redux/React-Native,  vscode-icons
 
 
 For when I inevitably forget how to push a folder to github: https://docs.github.com/en/migrations/importing-source-code/using-the-command-line-to-import-source-code/adding-locally-hosted-code-to-github
+
+
+Creating app:
+npx create-expo-app@latest
+To get old versions of stuff, change the package.json file, then do npm install
+
+Expo apps getting started -> set up your environment will show how to get ios and android emulators and stuff
+
+
+Start an app:
+npx expo start
+
+w - opens app in the browser
+
+ctrl-shift-i: dev tools -> little phone/computer icon lets you see it in mobile mode on the browser (a little better options on chrome than firefox -- lets you choose device)
+
+to create a blank project:
+npx create-expo-app@latest --template blank 
+
+
+With that extension, typing rnfe will create a "react native functional export component":
+selecting something + ctrld will let you edit all things with that name at once
+
+***
+
+import { View, Text } from "react-native";
+import React from "react";
+
+const index = () => {
+  return (
+    <View>
+      <Text>index</Text>
+    </View>
+  );
+};
+
+export default index;
+
+***
+
+press r to reload app
+
+At first, the component will not have any styling. So CSS needs to be added.
+Import StyleSheet from react-native
+Then, create a stylesheet with:
+*** const styles = Stylesheet.create({}) ***
+{} - an object
+
+***
+container: {
+    flex: 1, // makes the container fill the screen
+    flexDirection: "column", // different from CSS - uses camel case instead 
+}
+***
+
+This isn't applied yet, so put it inside the opening tag of the elements:
+***
+<View style={styles.container}>
+<Text style={styles.text}>
+***
+
+Put images into the assets folder.
+import ImageBackground to use images.
+Wrap everything in the view inside of it (but not the view itself)
+You have to import the images like the other stuff, but 
+*** import icedCoffeeImg from "../assets/images/iced-coffee.png"; ***
+doesn't work on typescript.
+which is annoying
+but this worked:
+    https://graffino.com/til/how-to-import-images-in-typescript
+Then you can set the image background:
+***
+<ImageBackground source={imagename.png}></ImageBackground>
+***
+Resize property: ***resizeMode = "cover"*** will make sure it covers the whole screen
+
+*           *           *
+
+app.json file: a big big object
+There are a lot of properties, including splash. That's the little loading page thing. I think. 
+So just change that to another image.
+I'm not actually sure what the splash screen is ngl
+maybe i broke it
+running npx expo prebuild to see what happens. did not work
+deleted splash png. also did not work
+ahhhhhhhhhhhhhhhhhhh
+running npx expo start --dev-client --clear
+did not work
+trying this https://stackoverflow.com/questions/65749724/expo-splashscreen-not-changing
+did not work
+
+
+i could change the icon tho lol
