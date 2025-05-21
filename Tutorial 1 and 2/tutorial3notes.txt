@@ -1,0 +1,75 @@
+Moved index.tsx and explore.tsx to app from app/(tabs)
+Renamed tabs/_layout.tsx so stop it from showing up
+
+Now there's an annoying "index" header on the top bar. IT was in the tabs layout folder.
+
+This needs expo router:
+so do this:
+npx expo install expo-router react-native-safe-area-context react-native-screens expo-linking expo-constants expo-status-bar
+***
+import { Link } from "expo-router";
+***
+Link is similar to the <a> in HTML.
+***
+<Link href="/explore">Explore</Link>
+***
+It's red squiggling but works so whatever.
+It doesn't work if you do "/explore.tsx" for some reason but that's chill
+
+Style: 
+textDecorationLine: 'underline',
+
+To turn the link into a button:
+1. add "asChild" to the end of the opening tag
+    - that will allow the button inside to do the onClick stuff
+2. import Pressable from "react-native";
+3. Inside the Link, surround the text with <Text> tags.
+4. Surround the <Text> tags with <Pressable> tags.
+
+Now it's ugly but it works.
+
+TO ADD ONE LINE OF STYLING TO SOMETHING:
+style = {{marginHorizontal: 'auto'}}
+
+Right now, we're using the Root Layout, not the one in (tabs).
+This uses Stack. 
+Right now, it goes to (tabs) and not-found.
+***
+      <Stack>
+        <Stack.Screen
+          name="(tabs)"
+          options={{ headerShown: false }}
+        />
+        <Stack.Screen name="+not-found" />
+      </Stack>
+***
+going to add a stack screen for each file we have rn
+
+        <Stack.Screen
+          name="index"
+          options={{ title: "Home" }}
+        />
+
+The title is what will show up on the header now.
+The option "headerShown: false" will stop the header from showing up at all.
+
++not-found: what will show up if we request a screen that doesn't exist.
+
+***
+export default function NotFoundScreen() {
+  return (
+    <>
+      <Stack.Screen options={{ title: 'Oops!' }} />
+      <ThemedView style={styles.container}>
+        <ThemedText type="title">This screen does not exist.</ThemedText>
+        <Link href="/" style={styles.link}>
+          <ThemedText type="link">Go to home screen!</ThemedText>
+        </Link>
+      </ThemedView>
+    </>
+  );
+}
+***
+The Stack is inside of the component, so that means that it will override the options in the layout file.
+
+A file with parentheses like (tab) is a group.
