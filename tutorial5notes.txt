@@ -1,0 +1,43 @@
+Make a new project: npx create-expo-app@latest
+
+To get rid of the example, run npm run reset-project
+
+Then rm -rf app-example to get rid of the other one. In the git bash. or it should delete it but it's not
+
+Hooks;
+import {useState} from "react";
+  const [todos, setTodos] = useState(data.sort((a, b) => b.id - a.id));
+  const [text, setText] = useState("");
+
+  I still don't really know what hooks are 
+
+  Make an anonymous function to add todos:
+    const addTodo = () => {
+    if (text.trim()) {
+      const newId = todos.length > 0 ? todos[0].id + 1 : 1;
+      setTodos([{ id: newId, title: text, completed: false }, ...todos]);
+    }
+  };
+
+  Then a bunch of CSS stuff which I didn't do because I know CSS even if I stink at it. 
+
+I change things from tsx to jsx because I didn't know what data type to make the Item. 
+
+To add an item to the list:
+
+        <TextInput
+          placeholder="Add a new thing"
+          placeholderTextColor="black"
+          onChangeText={setText}
+          value={text}
+        ></TextInput>
+        <Pressable onPress={addTodo}>
+          <Text>Add</Text>
+        </Pressable>
+
+To change text upon deletion: 
+
+<Text
+        style={[styles.todoText, item.completed && styles.completedText]}
+        onPress={() => toggleTodo(item.id)}
+      >

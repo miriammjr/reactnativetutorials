@@ -1,0 +1,84 @@
+remove the imports from the _layout
+
+***
+import { Appearance } from "react-native"; 
+***
+saves user preferences on Appearance
+
+So can remove import { useColorScheme } from "@/hooks/useColorScheme";
+and replace it with Apperance.getColorScheme();
+But then it doesn't know about the dark vs light theme. 
+
+So use the colors from the Colors constnat:
+  const theme = colorScheme === "dark" ? Colors.dark : Colors.light;
+
+Now we don't need the theme provider either and we're just left with the stack.
+
+Ctrl-click to get to Colors and then add a new color.
+
+*** header options ***
+title: 
+headerShown: true/false
+headerTitle
+***
+
+Flat lists have better performance because they only render what's currently showing. 
+
+Props: data and renderItem.
+
+SectionList: will break things up into sections. FlatList won't do that. 
+
+This time, the stylesheet will take in the color scheme.
+
+***
+function createStylesheet(theme, colorScheme) {
+    return StyleSheet.create({
+
+    });
+}
+***
+
+Thjere are some issues with using flatlist because mobile devices are automatically on scroll view, so there's a weird double scrolling thing going on. 
+
+SAfeAreaView is for mobile to automatically make padding around the stuff that you don't want to or can't cover. 
+
+***
+    const Container = Platform.OS === 'web' ? ScrollView : SafeAreaView;
+
+    <Container></Container>
+***
+to choose a scrollview for web and safeareaview for mobile
+Then it can be used as a <> thing.
+
+FlatList requires data and renderItem. 
+***
+<FlatList data={[]} renderItem={({ item }) => ()}>
+***
+
+In Constants, create a new file for the data you want.
+
+It's basically a json file.
+
+Then make images:
+@/assets/images
+Then make a new image folder in the constants folder, import them, then export them in an array.
+
+If you don't have a key property in the data, then 
+keyExtractor = {(item) => item.id.toString()}
+
+showsVerticalScrollIndicator={false} - stops scrollbar from showing in mobile
+
+ItemSeparatorComponent={} - what shows up between ItemSeparatorComponent
+
+Can also have headers and footers:
+              ListHeaderComponent={ }
+              ListFooterComponent={}
+
+              And lots of other stuff. 
+
+If you want multiple styules in one thing, put htem in an array:
+
+<Text style={[styles.menuItemTitle, styles.menuItemText]}>
+
+Then just basic css. Except I don't know why my things aren't on the right but I'm bad at CSS so that's probably just my problem
+

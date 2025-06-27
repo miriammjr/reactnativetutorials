@@ -1,0 +1,37 @@
+Development builds
+
+Debug build of the native app. 
+Preview to production
+
+make an expo.dev account
+
+expo application services (eas) lets you build it. 
+
+in the directory, install eas-cli 
+npm install -g eas-cli
+(-g means global)
+
+Then login with eas login
+
+Then eas init
+
+Then configure 
+eas build:configure
+It makes eas.json
+
+
+At the end, eas submit will send it to the app store.
+
+npx expo install --check
+cheks all of the dependencies for being updated
+
+Then:
+eas build --profile development --platform android
+
+Can see status in the expo.dev dashboard
+
+Then npx expo start --tunnel to start the server
+
+Then scan the qr code and it'll let you install it on your phone
+
+

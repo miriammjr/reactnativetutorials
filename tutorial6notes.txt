@@ -1,0 +1,74 @@
+To add a Google font:
+
+npm i @expo-google-fonts/fontname
+
+Then import:
+import { Inter_500Medium, useFonts } from "@expo-google-fonts/inter";
+
+
+Then make a hook:
+  const [loaded, error] = useFonts({
+    Inter_500Medium,
+  })
+
+Light vs Dark Mode
+Make two colour schemes in the Colors file, then make a Theme Provider. 
+
+I still don't really get hooks or providers and he doesn't really explain them in this video.
+
+But 
+export const ThemeContext = createContext({});
+
+***
+This has to be in javascript!!! Not typescript!!!
+***
+
+Then make a ThemeProvider.
+
+export const ThemeProvider = ({ children }) => {} (to account for children elements)
+
+To use the children:
+  return (
+    <ThemeContext.Provider
+      value={{
+        colorScheme,
+        setColorScheme,
+        theme,
+      }}
+    >
+      {children}
+    </ThemeContext.Provider>
+  );
+
+Then you can import it and use it in the layout file. 
+And then import the ThemeContext into the index file. 
+
+You can make the icons change depending on what's going on:
+ <Octicons name={colorScheme === 'dark' ? "moon" : "sun"} color={theme.text} />
+
+ If it's dark then it's a moon and if it's light then it's the sun.
+
+Animations to make things smoother:
+import { Animated, LinearTransition } from "react-native-reanimated";
+To make the keyboard go away, 
+Animated.Flatlist
+then itemLayoutAnimation={LinearTransition} 
+
+*****\
+
+ASYNC STORAGE
+
+https://react-native-async-storage.github.io/async-storage/docs/install/
+
+Then use useEffect to get hte data from there. 
+
+
+_______________________________________________
+In light mode, you can't see the status bar. 
+There's a thing to fix that
+
+import { StatusBar } from "expo-status-bar";
+
+Then after everything:
+      <StatusBar style={colorScheme === "dark" ? "light" : "dark"} />
+And then it'll be hte opposite of the color scheme.

@@ -1,0 +1,27 @@
+To stop the header from showing on everything in the stack, put 
+screenOptions={{ headerShown: false }}
+inside the opening tag for the stack. 
+
+        <Stack screenOptions={{ headerShown: false }}>
+          <Stack.Screen name="index" />
+          <Stack.Screen name="todos/[id]" />
+        </Stack>
+
+
+To call each individual item: 
+const { id } = useLocalSearchParams() 
+
+Can use onLongPress instead of usePress to make it require a longer one. 
+IT doesn't work???
+I don't know why 
+:(
+It works if I switch to this:
+      <Pressable
+        onPress={() => toggleTodo(item.id)}
+        onLongPress={() => handlePress(item.id)}
+      >
+So I don't know why but ok
+
+
+I'm kind of lost now to be honest. 
+

@@ -26,6 +26,15 @@ const App = () => {
             <Text style={styles.buttonText}>Contact Us</Text>
           </Pressable>
         </Link>
+        <Link
+          href="/menu"
+          style={{ marginHorizontal: "auto" }}
+          asChild
+        >
+          <Pressable style={styles.button}>
+            <Text style={styles.buttonText}>Menu</Text>
+          </Pressable>
+        </Link>
       </ImageBackground>
     </View>
   );
@@ -68,6 +77,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     backgroundColor: "rgba(0,0,0,75)",
     padding: 4,
+    marginBottom: 50,
   },
   buttonText: {
     color: "white",
